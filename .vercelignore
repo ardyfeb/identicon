@@ -1,0 +1,8 @@
+/*
+native/*
+
+!lib
+!server
+!native
+!native/index.node
+!vercel.json

@@ -1,0 +1,23 @@
+{
+  "name": "identicon",
+  "version": "0.1.0",
+  "description": "Identicon generator for nodejs",
+  "main": "lib/index.js",
+  "files": [
+    "lib",
+    "native/index.node"
+  ],
+  "author": "Ardy Febriansyah <ardyfeb02@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "neon-cli": "^0.4.0",
+    "node-pre-gyp": "amilajack/node-pre-gyp#neon-compat",
+    "node-pre-gyp-github": "^1.4.3"
+  },
+  "scripts": {
+    "install": "node-pre-gyp --fallback-to-build=false || neon build --release",
+    "native:build": "neon build",
+    "native:package": "node-pre-gyp package",
+    "native:release": "yarn package && node-pre-gyp-github publish"
+  }
+}
