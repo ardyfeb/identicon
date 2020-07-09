@@ -1,5 +1,5 @@
 {
-  "name": "identicon",
+  "name": "@ardyfeb/identicon",
   "version": "0.1.0",
   "description": "Identicon generator for nodejs",
   "main": "lib/index.js",
@@ -19,7 +19,7 @@
     "node-pre-gyp-github": "^1.4.3"
   },
   "scripts": {
-    "install": "node-pre-gyp --fallback-to-build=false || neon build --release",
+    "install": "node-pre-gyp install --fallback-to-build=false || neon build --release",
     "native:build": "neon build",
     "native:package": "node-pre-gyp package",
     "native:release": "yarn native:package && node-pre-gyp-github publish"
