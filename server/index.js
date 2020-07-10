@@ -1,17 +1,16 @@
+const micro = require('micro');
+const query = require('query-string');
 const identicon = require('../lib');
 
 function handle(request, response) {
-  const magic_words = request.query.word;
+  const requestQuery = query.parseUrl(request.url, { parseNumbers: true }).query;
+  const magic_words = requestQuery.word;
 
   if (!magic_words) {
-    response
-      .status(400)
-      .json(
-        {
-          error: 'missing_magic_word',
-          message: 'Please provide a word into query'
-        }
-      )
+    micro.send(response, 400, {
+      error: 'missing_magic_word',
+      message: 'Please provide a word into query'
+    })
 
     return;
   }
@@ -22,51 +21,54 @@ function handle(request, response) {
     size = 5, 
     scale = 500, 
     format = 'png'
-  } = request.query;
+  } = requestQuery;
 
-  let background = request.query.background || [240, 240, 240];
+  let background = requestQuery.background || [240, 240, 240];
 
   if (typeof background == 'string') {
     background = background.split(',').map(c => parseInt(c));
 
     if (background.length != 3 || !background.every(c => typeof c == 'number')) {
-      response
-        .status(400)
-        .json(
-          {
-            error: 'invalid_background',
-            message: 'Invalid background color provided'
-          }
-        )
+      micro.send(response, 400, {
+        error: 'invalid_background',
+        message: 'Invalid background color provided'
+      })
 
       return;
     }
   }
   
   if (!['png', 'jpeg'].includes(format)) {
-    response
-      .status(400)
-      .json(
-        {
-          error: 'invalid_format',
-          message: 'Valid format is png, jpg'
-        }
-      )
+    micro.send(response, 400, {
+      error: 'invalid_format',
+      message: 'Valid format is png, jpg'
+    })
+
+    return;
   }
 
-  const buffer = identicon.generate(
-    magic_words, 
-    {
-      border,
-      size,
-      scale,
-      background,
-      format,
-    }
-  )
-
-  response.setHeader('content-type', `image/${format}`);
-  response.send(buffer);
+  try {
+    const buffer = identicon.generate(
+      magic_words, 
+      {
+        border,
+        size,
+        scale,
+        background,
+        format,
+      }
+    )
+    
+    response.setHeader('content-type', `image/${format}`);
+    response.setHeader('cache-control', 'public,max-age=36000');
+  
+    micro.send(response, 200, buffer);
+  } catch (error) {
+    micro.send(response, 500, { 
+      error: 'unexpected-error',
+      message: 'Cannot process identicon'
+    })
+  }
 }
 
 module.exports = handle

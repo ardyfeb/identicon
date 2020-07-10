@@ -1,6 +1,6 @@
 {
   "name": "@ardyfeb/identicon",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Identicon generator for nodejs",
   "main": "lib/index.js",
   "files": [
@@ -14,12 +14,15 @@
     "url": "git+https://github.com/ardyfeb/identicon.git"
   },
   "dependencies": {
+    "micro": "^9.3.4",
     "neon-cli": "^0.4.0",
     "node-pre-gyp": "amilajack/node-pre-gyp#neon-compat",
-    "node-pre-gyp-github": "^1.4.3"
+    "node-pre-gyp-github": "^1.4.3",
+    "query-string": "^6.13.1"
   },
   "scripts": {
     "install": "node-pre-gyp install --fallback-to-build=false || neon build --release",
+    "server": "micro ./server/index.js",
     "native:build": "neon build",
     "native:package": "node-pre-gyp package",
     "native:release": "yarn native:package && node-pre-gyp-github publish"

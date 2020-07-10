@@ -1,0 +1,9 @@
+.git
+
+.idea
+.vscode
+
+target
+node_modules
+build
+native/target
