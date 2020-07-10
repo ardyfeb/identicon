@@ -2,6 +2,8 @@
 Blazing fast identicon generator for nodejs based on [identicon-rs](https://github.com/fluffy-samurai/identicon-rs).
 What is Identicon ? https://en.wikipedia.org/wiki/Identicon
 
+Try [https://identicon-ak2o7sspyq-nn.a.run.app/?word=hello-world&background=240,240,240](https://identicon-ak2o7sspyq-nn.a.run.app/?word=hello-world&background=240,240,240) pass [options](#available-options) as query string
+
 ## Installation
 Before installing this package make sure you have rust installed, read https://www.rust-lang.org/tools/install
 
