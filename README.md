@@ -1,9 +1,9 @@
 # Identicon
+[![npm](https://img.shields.io/npm/v/@ardyfeb/identicon?color=CC3534&logo=npm&style=for-the-badge)](https://www.npmjs.com/package/@ardyfeb/identicon)
+[![Docker Image](https://img.shields.io/docker/v/ardyfeb/identicon-server?color=%23099cec&logo=docker&style=for-the-badge)](https://hub.docker.com/r/ardyfeb/identicon-server)
+
 Blazing fast identicon generator for nodejs based on [identicon-rs](https://github.com/fluffy-samurai/identicon-rs).
 What is Identicon ? https://en.wikipedia.org/wiki/Identicon
-
-![npm](https://img.shields.io/npm/v/@ardyfeb/identicon?color=CC3534&logo=npm&style=for-the-badge)
-![Docker Image Version (latest by date)](https://img.shields.io/docker/v/ardyfeb/identicon-server?color=%23099cec&logo=docker&style=for-the-badge)
 
 Try [https://identicon-ak2o7sspyq-nn.a.run.app/?word=hello-world&background=240,240,240](https://identicon-ak2o7sspyq-nn.a.run.app/?word=hello-world&background=240,240,240) pass [options](#available-options) as query string
 
