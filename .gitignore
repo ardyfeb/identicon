@@ -6,4 +6,4 @@ native/artifacts.json
 **/.DS_Store
 **/.idea
 
-.vercel
+build
